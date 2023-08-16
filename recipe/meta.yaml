@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.2.5" %}
+{% set version = "0.2.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: ba6c782f8d14e90bbaea4a1e11ad5f93c89be120cd5d9d31fed5fe6a64818094
+  sha256: 92644fe82c2a403fff2eb8482ec755a0d8b9c42d5d40511f8d2c22a3a51e92a3
 
 build:
   skip: true  # [win]
