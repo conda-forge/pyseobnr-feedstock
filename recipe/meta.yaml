@@ -8,11 +8,13 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
   sha256: 92644fe82c2a403fff2eb8482ec755a0d8b9c42d5d40511f8d2c22a3a51e92a3
+  patches:
+    - nolalsuite-in-pyproject.patch
 
 build:
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -54,7 +56,7 @@ test:
     - test/
   commands:
     #- python -m pip check
-    # This is disabled becase scri and sxs have issues on pypi
+    # This is disabled because scri and sxs have issues on pypi
     - python -m pip show pyseobnr
     - python -m pytest test/ -ra
 

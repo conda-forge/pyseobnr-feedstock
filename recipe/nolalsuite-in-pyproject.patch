@@ -1,0 +1,10 @@
+--- pyproject.toml	2023-11-03 16:30:58
++++ pyproject-patched.toml	2023-11-03 16:31:07
+@@ -44,7 +44,6 @@
+ 		"jaxlib",
+ 		"rich",
+ 		"pygsl_lite",
+-		"lalsuite",
+ 	]
+ 
+ 	# dynamic properties set by tools:
