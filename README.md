@@ -218,4 +218,5 @@ Feedstock Maintainers
 * [@SergeiOssokine](https://github.com/SergeiOssokine/)
 * [@duncanmmacleod](https://github.com/duncanmmacleod/)
 * [@lorenzopompili00](https://github.com/lorenzopompili00/)
+* [@raffienficiaud](https://github.com/raffienficiaud/)
 
