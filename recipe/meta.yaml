@@ -10,6 +10,8 @@ source:
   sha256: b52c2897f9e906a072e76f60d12294db4358d91feb57e3fe5aa4c8024f944263
   patches:
     - nolalsuite-in-pyproject.patch
+    - adjusting-regression-tests-bounds-1.patch
+    - adjusting-regression-tests-bounds-2.patch
 
 build:
   skip: true  # [win]
@@ -50,11 +52,12 @@ test:
   requires:
     - pip
     - pytest
+    - pandas
   source_files:
     - test/
   commands:
-    #- python -m pip check
     # This is disabled because scri and sxs have issues on pypi
+    #- python -m pip check
     - python -m pip show pyseobnr
     - python -m pytest test/ -ra
 
