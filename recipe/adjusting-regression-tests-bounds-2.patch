@@ -1,0 +1,66 @@
+diff --git a/test/regression_tests/test_settings.py b/test/regression_tests/test_settings.py
+index 7044c43..6c780ca 100644
+--- a/test/regression_tests/test_settings.py
++++ b/test/regression_tests/test_settings.py
+@@ -43,16 +43,20 @@ def test_mode_arrays_settings(basic_settings):
+         ValueError,
+         match=value_error,
+     ):
+-        _ = GenerateWaveform(basic_settings | {"mode_array": [], "ModeArray": []})
++        failing_settings = {k: v for k, v in basic_settings.items()}
++        failing_settings["mode_array"] = []
++        failing_settings["ModeArray"] = []
++        _ = GenerateWaveform(failing_settings)
+ 
+     with pytest.raises(
+         ValueError,
+         match=value_error,
+     ):
+-        _ = GenerateWaveform(
+-            basic_settings
+-            | {"approximant": "SEOBNRv5PHM", "mode_array": [], "ModeArray": []}
+-        )
++        failing_settings = {k: v for k, v in basic_settings.items()}
++        failing_settings["approximant"] = "SEOBNRv5PHM"
++        failing_settings["mode_array"] = []
++        failing_settings["ModeArray"] = []
++        _ = GenerateWaveform(failing_settings)
+ 
+     calls_to_check = (
+         "generate_td_modes",
+@@ -62,26 +66,24 @@ def test_mode_arrays_settings(basic_settings):
+ 
+     # works with list and tuples
+     for approximant in "SEOBNRv5HM", "SEOBNRv5PHM":
+-        wfm_gen = GenerateWaveform(
+-            basic_settings
+-            | {"approximant": approximant, "mode_array": [(2, 2), (3, 3)]}
+-        )
++        new_settings = {k: v for k, v in basic_settings.items()}
++        new_settings.update({"approximant": approximant, "mode_array": [(2, 2), (3, 3)]})
++        wfm_gen = GenerateWaveform(new_settings)
+ 
+         for func in calls_to_check:
+             _ = getattr(wfm_gen, func)()
+ 
+-        wfm_gen = GenerateWaveform(
+-            basic_settings
+-            | {"approximant": approximant, "mode_array": ((2, 2), (3, 3))}
+-        )
++        new_settings = {k: v for k, v in basic_settings.items()}
++        new_settings.update({"approximant": approximant, "mode_array": ((2, 2), (3, 3))})
++        wfm_gen = GenerateWaveform(new_settings)
+ 
+         for func in calls_to_check:
+             _ = getattr(wfm_gen, func)()
+ 
+         # incorrect mode array yields an error
+-        wfm_gen = GenerateWaveform(
+-            basic_settings | {"approximant": approximant, "mode_array": [2, 2, 3, 3]}
+-        )
++        failed_settings = {k: v for k, v in basic_settings.items()}
++        failed_settings.update({"approximant": approximant, "mode_array": [2, 2, 3, 3]})
++        wfm_gen = GenerateWaveform(failed_settings)
+         for func in calls_to_check:
+             with pytest.raises(TypeError):
+                 _ = getattr(wfm_gen, func)()

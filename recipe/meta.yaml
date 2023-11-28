@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.2.6" %}
+{% set version = "0.2.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,16 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: 92644fe82c2a403fff2eb8482ec755a0d8b9c42d5d40511f8d2c22a3a51e92a3
+  sha256: b52c2897f9e906a072e76f60d12294db4358d91feb57e3fe5aa4c8024f944263
   patches:
     - nolalsuite-in-pyproject.patch
+    - adjusting-regression-tests-bounds-1.patch
+    - adjusting-regression-tests-bounds-2.patch
 
 build:
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 2
+  number: 0
 
 requirements:
   build:
@@ -30,8 +32,6 @@ requirements:
     - wheel
   run:
     - h5py
-    - jax
-    - jaxlib
     - matplotlib-base
     - numba
     - numexpr
@@ -52,11 +52,12 @@ test:
   requires:
     - pip
     - pytest
+    - pandas
   source_files:
     - test/
   commands:
-    #- python -m pip check
     # This is disabled because scri and sxs have issues on pypi
+    #- python -m pip check
     - python -m pip show pyseobnr
     - python -m pytest test/ -ra
 

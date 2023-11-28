@@ -1,10 +1,12 @@
---- pyproject.toml	2023-11-03 16:30:58
-+++ pyproject-patched.toml	2023-11-03 16:31:07
-@@ -44,7 +44,6 @@
- 		"jaxlib",
- 		"rich",
- 		"pygsl_lite",
--		"lalsuite",
- 	]
+diff --git a/pyproject.toml b/pyproject.toml
+index 5c57897..2357e9a 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -41,7 +41,6 @@
+         "setuptools",
+         "rich",
+         "pygsl_lite",
+-        "lalsuite",
+     ]
  
- 	# dynamic properties set by tools:
+     requires-python = ">=3.8"
