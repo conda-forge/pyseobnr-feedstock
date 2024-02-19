@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.2.7" %}
+{% set version = "0.2.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: b52c2897f9e906a072e76f60d12294db4358d91feb57e3fe5aa4c8024f944263
+  sha256: a277fc2b1393144d8232d4763ae6d268c72335478db0c86ae9a0c2b69d7cfa3c
   patches:
     - nolalsuite-in-pyproject.patch
     - adjusting-regression-tests-bounds-1.patch
