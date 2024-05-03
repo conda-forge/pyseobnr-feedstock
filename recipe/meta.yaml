@@ -13,7 +13,7 @@ source:
     - adjusting-regression-compat-3.8.patch
 
 build:
-  skip: true  # [win]
+  skip: true  # [py<39 or win]
   script: {{ PYTHON }} -m pip install . -vv
   number: 0
 
