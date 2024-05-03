@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.2.8" %}
+{% set version = "0.2.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: a277fc2b1393144d8232d4763ae6d268c72335478db0c86ae9a0c2b69d7cfa3c
+  sha256: 4d2070e6f74f39662510ee5488a15adc40eb1e921d635ac68e217916ebbe9db4
   patches:
     - nolalsuite-in-pyproject.patch
     - adjusting-regression-compat-3.8.patch
@@ -20,6 +20,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - cython
     - numpy
