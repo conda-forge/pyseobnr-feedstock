@@ -10,12 +10,11 @@ source:
   sha256: 4d2070e6f74f39662510ee5488a15adc40eb1e921d635ac68e217916ebbe9db4
   patches:
     - nolalsuite-in-pyproject.patch
-    - adjusting-regression-compat-3.8.patch
 
 build:
   skip: true  # [py<39 or win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
