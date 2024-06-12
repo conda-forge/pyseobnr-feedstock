@@ -18,8 +18,13 @@ build:
 
 requirements:
   build:
+    - cython                                 # [build_platform != target_platform]
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
+
   host:
     - cython
     - numpy
@@ -29,6 +34,7 @@ requirements:
     - setuptools
     - setuptools-scm >=3.4.3
     - wheel
+
   run:
     - h5py
     - matplotlib-base
