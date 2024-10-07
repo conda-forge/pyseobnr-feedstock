@@ -10,11 +10,12 @@ source:
   sha256: 0c15b47cd0667d1a9c74b67750b62cd5fae228ca57399ee4946800bc2061c676
   patches:
     - nolalsuite-in-pyproject.patch
+    - test-tolerance-using-mkl.patch
 
 build:
   skip: true  # [py<39 or win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
