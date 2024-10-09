@@ -14,7 +14,7 @@ source:
 build:
   skip: true  # [py<39 or win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -47,6 +47,7 @@ requirements:
     - python-lalsimulation
     - qnm
     - rich
+    - {{ pin_compatible('scipy') }}
     - scipy >=1.8.0
     - scri
     - setuptools
