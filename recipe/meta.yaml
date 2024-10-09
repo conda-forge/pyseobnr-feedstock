@@ -12,9 +12,9 @@ source:
     - nolalsuite-in-pyproject.patch
 
 build:
-  skip: true  # [py<39 or win]
+  skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -40,6 +40,8 @@ requirements:
     - matplotlib-base
     - numba
     - numexpr
+    - {{ pin_compatible('numpy') }}
+    - numpy >=1.23.0
     - pygsl_lite
     - python
     - python-lal
@@ -47,11 +49,10 @@ requirements:
     - python-lalsimulation
     - qnm
     - rich
+    - {{ pin_compatible('scipy') }}
     - scipy >=1.8.0
     - scri
     - setuptools
-    - {{ pin_compatible('numpy') }}
-    - numpy >=1.23.0
 
 test:
   requires:
