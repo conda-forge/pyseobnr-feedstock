@@ -14,7 +14,7 @@ source:
 build:
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -41,7 +41,6 @@ requirements:
     - matplotlib-base
     - numba
     - numexpr
-    - {{ pin_compatible('numpy') }}
     - numpy >=1.23.0
     - pygsl_lite
     - python
