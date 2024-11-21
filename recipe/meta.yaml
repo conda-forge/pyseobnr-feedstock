@@ -1,20 +1,20 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.2.12" %}
+{% set version = "0.3.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: 0c15b47cd0667d1a9c74b67750b62cd5fae228ca57399ee4946800bc2061c676
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
+  sha256: 7833aa0de1e8c0e826180c8f7aea6a91eeae9e60bd75c1255acfa49cc23f3349
   patches:
     - nolalsuite-in-pyproject.patch
 
 build:
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 2
+  number: 0
 
 requirements:
   build:
@@ -60,6 +60,7 @@ test:
     - pip
     - pytest
     - pandas
+    - pycbc
   source_files:
     - test/
   commands:
@@ -79,6 +80,5 @@ about:
 extra:
   recipe-maintainers:
     - raffienficiaud
-    - SergeiOssokine
     - duncanmmacleod
     - lorenzopompili00
