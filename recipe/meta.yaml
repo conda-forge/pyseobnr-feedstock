@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.3.0" %}
+{% set version = "0.3.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,16 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: 7833aa0de1e8c0e826180c8f7aea6a91eeae9e60bd75c1255acfa49cc23f3349
+  sha256: 4cc1a89b88ef5fd4cc88c09c6bddfc1b3cc521e1877bc2dc06ea7694724d8347
   patches:
     - nolalsuite-in-pyproject.patch
+    - pandas-item-access-in-test.patch
 
 build:
   skip: true  # [win]
-  script: {{ PYTHON }} -m pip install . -vv
+  script: |
+    find . -name "*.cpp" -delete
+    {{ PYTHON }} -m pip install . -vv
   number: 0
 
 requirements:
@@ -24,6 +27,7 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
     - scipy <1.13.0                          # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
 
   host:
