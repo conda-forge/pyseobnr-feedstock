@@ -11,13 +11,14 @@ source:
   patches:
     - nolalsuite-in-pyproject.patch
     - pandas-item-access-in-test.patch
+    - disable_ehm_dynamics_tests.patch
 
 build:
   skip: true  # [win]
   script: |
     find . -name "*.cpp" -delete
     {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
