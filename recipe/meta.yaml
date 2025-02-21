@@ -51,7 +51,6 @@ requirements:
     - pygsl_lite
     - python
     - python-lal
-    - python-lalinference
     - python-lalsimulation
     - qnm
     - rich
