@@ -10,7 +10,6 @@ source:
   sha256: 4cc1a89b88ef5fd4cc88c09c6bddfc1b3cc521e1877bc2dc06ea7694724d8347
   patches:
     - nolalsuite-in-pyproject.patch
-    - pandas-item-access-in-test.patch
 
 build:
   skip: true  # [win]
