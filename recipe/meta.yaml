@@ -11,7 +11,6 @@ source:
   patches:
     - nolalsuite-in-pyproject.patch
     - pandas-item-access-in-test.patch
-    - disable_ehm_dynamics_tests.patch
 
 build:
   skip: true  # [win]
