@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.3.1" %}
+{% set version = "0.3.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: 4cc1a89b88ef5fd4cc88c09c6bddfc1b3cc521e1877bc2dc06ea7694724d8347
+  sha256: 39485b18d0d19b668f03e08a5dc1fe78f1023c96aa8ab681452e6d7d470bbf41
   patches:
     - nolalsuite-in-pyproject.patch
 
@@ -15,7 +15,7 @@ build:
   skip: true  # [win]
   script: |
     {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 0
 
 requirements:
   build:
