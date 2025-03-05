@@ -15,7 +15,6 @@ source:
 build:
   skip: true  # [win]
   script: |
-    find . -name "*.cpp" -delete
     {{ PYTHON }} -m pip install . -vv
   number: 1
 
