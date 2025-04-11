@@ -1,12 +1,12 @@
 diff --git a/pyproject.toml b/pyproject.toml
-index 5c57897..2357e9a 100644
+index 8526d7c8..8b8cd0e3 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
-@@ -41,7 +41,6 @@
+@@ -58,7 +58,6 @@
+         "scri",
          "setuptools",
-         "rich",
          "pygsl_lite",
 -        "lalsuite",
+         "importlib_resources ; python_version < '3.10'",
      ]
  
-     requires-python = ">=3.8"
