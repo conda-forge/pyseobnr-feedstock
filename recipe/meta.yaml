@@ -1,5 +1,5 @@
 {% set name = "pyseobnr" %}
-{% set version = "0.3.3" %}
+{% set version = "0.3.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyseobnr-{{ version }}.tar.gz
-  sha256: 77e623ff19996a1fd8e627c6052c4af6dfe9e2f4e9a90766508ac926f63b9b61
+  sha256: 1b3270b399375750eed17deb9aa589927702088c362a7f2f15a9ac967d410aa8
   patches:
     - nolalsuite-in-pyproject.patch
 
@@ -23,7 +23,7 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
-    - scipy <1.13.0                          # [build_platform != target_platform]
+    - scipy                                  # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
@@ -33,14 +33,13 @@ requirements:
     - numpy
     - pip
     - python
-    - scipy <1.13.0
+    - scipy
     - setuptools
     - setuptools-scm >=3.4.3
     - wheel
 
   run:
     - h5py
-    - matplotlib-base
     - numba
     - numexpr
     - {{ pin_compatible('numpy') }}
@@ -50,7 +49,6 @@ requirements:
     - python-lal
     - python-lalsimulation
     - qnm
-    - rich
     - {{ pin_compatible('scipy') }}
     - scipy >=1.8.0
     - scri
