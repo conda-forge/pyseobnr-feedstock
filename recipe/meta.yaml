@@ -1,6 +1,10 @@
 {% set name = "pyseobnr" %}
 {% set version = "0.3.4" %}
 
+# choose the oldest scipy possible, to maximise compatibility with user environments
+{% set scipy_version = "1.10" %}  # [py<312]
+{% set scipy_version = "1.12" %}  # [py>=312]
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -15,7 +19,7 @@ build:
   skip: true  # [win]
   script: |
     {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -23,7 +27,7 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
-    - scipy                                  # [build_platform != target_platform]
+    - scipy {{ scipy_version }}              # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
@@ -33,7 +37,7 @@ requirements:
     - numpy
     - pip
     - python
-    - scipy
+    - scipy {{ scipy_version }}
     - setuptools
     - setuptools-scm >=3.4.3
     - wheel
@@ -50,7 +54,6 @@ requirements:
     - python-lalsimulation
     - qnm
     - {{ pin_compatible('scipy') }}
-    - scipy >=1.8.0
     - scri
     - setuptools
 
