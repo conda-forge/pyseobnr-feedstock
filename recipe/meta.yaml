@@ -2,8 +2,7 @@
 {% set version = "0.3.4" %}
 
 # choose the oldest scipy possible, to maximise compatibility with user environments
-{% set scipy_version = "1.10" %}  # [py<312]
-{% set scipy_version = "1.12" %}  # [py>=312]
+{% set scipy_version = "1.13" %}
 
 package:
   name: {{ name|lower }}
@@ -19,7 +18,7 @@ build:
   skip: true  # [win]
   script: |
     {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -46,7 +45,6 @@ requirements:
     - h5py
     - numba
     - numexpr
-    - {{ pin_compatible('numpy') }}
     - numpy >=1.23.0
     - pygsl_lite
     - python
