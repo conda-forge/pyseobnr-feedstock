@@ -30,10 +30,13 @@ requirements:
     - ${{ stdlib("c") }}
     - if: build_platform != target_platform
       then:
-        - cython
-        - python
         - cross-python_${{ target_platform }}
+        - cython
         - numpy
+        - python
+        - if: match(python, ">=3.13")
+          then: scipy ${{ scipy_version }}.*
+          else: scipy ${{ scipy_version_v312 }}.*
   host:
     - cython
     - numpy
