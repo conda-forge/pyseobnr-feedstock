@@ -72,6 +72,8 @@ tests:
         - pytest
         - pandas
         - pycbc
+        - if: match(python, "<3.11")
+          then: setuptools <82.0.0a0
     script:
       - python -m pip show pyseobnr
       - python -m pytest test/ -ra
