@@ -1,0 +1,93 @@
+schema_version: 1
+
+context:
+  name: pyseobnr
+  version: 0.3.6
+  # choose the oldest scipy possible, to maximise compatibility with user environments
+  scipy_version: "1.17"
+  scipy_version_v312: "1.13"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyseobnr-${{ version }}.tar.gz
+  sha256: 46508432709e637e6661252b55675bfb002a4425b770bb94b0bb4194ccdc5b97
+  patches:
+    - nolalsuite-in-pyproject.patch
+
+build:
+  number: 1
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+        - python
+        - if: match(python, ">=3.13")
+          then: scipy ${{ scipy_version }}.*
+          else: scipy ${{ scipy_version_v312 }}.*
+  host:
+    - cython
+    - numpy
+    - pip
+    - python
+    - if: match(python, ">=3.13")
+      then: scipy ${{ scipy_version }}.*
+      else: scipy ${{ scipy_version_v312 }}.*
+    - setuptools
+    - setuptools-scm >=3.4.3
+    - wheel
+  run:
+    - h5py
+    - numba
+    - numexpr
+    - numpy >=1.23.0
+    - pygsl_lite
+    - python
+    - python-lal
+    - python-lalsimulation
+    - qnm
+    - ${{ pin_compatible('scipy') }}
+    - scri
+    - setuptools
+
+tests:
+  - files:
+      source:
+        - test/
+    requirements:
+      run:
+        - pip
+        - pytest
+        - pandas
+        - pycbc
+        - if: match(python, "<3.11")
+          then: setuptools <82.0.0a0
+    script:
+      - python -m pip show pyseobnr
+      - python -m pytest test/ -ra
+
+about:
+  summary: Gravitational wave modelling within the effective-one-body framework
+  homepage: https://git.ligo.org/waveforms/software/pyseobnr
+  repository: https://git.ligo.org/waveforms/software/pyseobnr
+  documentation: https://waveforms.docs.ligo.org/software/pyseobnr/
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - lorenzopompili00
+    - raffienficiaud
